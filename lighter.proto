@@ -9,7 +9,7 @@ service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
     rpc checkConnection(InitMessage) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfig(LoadServerRequest) returns (ServerConfig) {};
+    rpc loadServerConfiguration(LoadServerRequest) returns (ServerConfiguration) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
 }
 
@@ -47,7 +47,7 @@ message LoadServerRequest {
 message ServerConfig {
     string serverName = 1;
     FadeTime fadeTime = 2;
-    IpVersion ipVersion = 3;
+    IPVersion ipVersion = 3;
 }
 
 message ChangeParameterMessage {
@@ -55,17 +55,17 @@ message ChangeParameterMessage {
     oneof parameter {
         string serverName = 2;
         FadeTime fadeTime = 3;
-        IpVersion ipversion = 4;
+        IPVersion ipversion = 4;
     }
 }
 
-message FadeTime {
-    int32 millis = 1;
+message FadeDuration {
+    int32 milliseconds = 1;
 }
 
-message IpVersion {
+message IPVersion {
     enum Version {
-        MULTI = 0;
+        DUALSTACK = 0;
         IPV4ONLY = 1;
         IPV6ONLY = 2;
     }
