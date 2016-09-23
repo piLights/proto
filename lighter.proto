@@ -9,7 +9,7 @@ service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
     rpc checkConnection(InitMessage) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfig(LoadConfigRequest) returns (ServerConfig) {};
+    rpc loadServerConfiguration(LoadConfigurationRequest) returns (ServerConfiguration) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
     rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc loadServerLog(LogRequest) returns (stream LogEntry) {};
@@ -41,12 +41,12 @@ message InitMessage {
     string password = 2;
 }
 
-message LoadConfigRequest {
+message LoadConfigurationRequest {
     string deviceID = 1;
     string password = 2;
 }
 
-message ServerConfig {
+message ServerConfiguration {
     string serverName = 1;
     FadeTime fadeTime = 2;
     IPVersion ipVersion = 3;
