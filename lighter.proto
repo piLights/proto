@@ -9,8 +9,9 @@ service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
     rpc checkConnection(InitMessage) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfiguration(LoadServerRequest) returns (ServerConfiguration) {};
+    rpc loadServerConfig(LoadConfigRequest) returns (ServerConfig) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
+    rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
 }
 
 message ColorMessage {
@@ -24,7 +25,7 @@ message ColorMessage {
 }
 
 
-message StateMessage{
+message StateMessage {
     bool onstate = 1;
     string deviceID = 2;
     string password = 3;
@@ -34,12 +35,12 @@ message Confirmation {
     bool success = 1;
 }
 
-message InitMessage{
+message InitMessage {
     string deviceID = 1;
     string password = 2;
 }
 
-message LoadServerRequest {
+message LoadConfigRequest {
     string deviceID = 1;
     string password = 2;
 }
@@ -56,17 +57,33 @@ message ChangeParameterMessage {
         string serverName = 2;
         FadeTime fadeTime = 3;
         IPVersion ipversion = 4;
+        Pins pins = 5;
     }
 }
 
-message FadeDuration {
-    int32 milliseconds = 1;
+message FadeTime {
+    int32 millis = 1;
 }
 
 message IPVersion {
     enum Version {
-        DUALSTACK = 0;
+        DUAL = 0;
         IPV4ONLY = 1;
         IPV6ONLY = 2;
     }
+    Version version = 1;
+}
+
+message Pins {
+    int32 redPin = 1;
+    int32 greenPin = 2;
+    int32 bluePin = 3;
+    int32 whitePin = 4;
+}
+
+message ScheduledSwitch {
+    int64 time = 1;
+    bool onstate = 2;
+    string deviceID = 3;
+    string password = 4;
 }
