@@ -95,11 +95,11 @@ message LogEntry {
 }
 
 enum LogLevel {
-    TRACE = 0;
-    DEBUG = 1;
-    INFO = 2;
-    WARN = 3;
-    ERROR = 4;
+    DEBUG = 0;
+    INFO = 1;
+    WARN = 2;
+    ERROR = 3;
+    PANIC = 4;
 }
 
 message LogRequest {
