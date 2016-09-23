@@ -63,7 +63,7 @@ message ChangeParameterMessage {
 }
 
 message FadeTime {
-    int32 millis = 1;
+    int32 milliseconds = 1;
 }
 
 message IPVersion {
