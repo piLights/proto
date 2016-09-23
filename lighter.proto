@@ -112,4 +112,5 @@ message LogRequest {
     }
     LogLevel logLevel = 1;
     int64 amount = 2;
+    string password = 3;
 }
