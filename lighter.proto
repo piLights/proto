@@ -7,12 +7,15 @@ package LighterGRPC;
 
 service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
-    rpc checkConnection(InitMessage) returns (stream ColorMessage) {};
+    rpc checkConnection(Request) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfig(LoadConfigRequest) returns (ServerConfig) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
     rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc loadServerLog(LogRequest) returns (stream LogEntry) {};
+
+    //Get and set the Configuration of the backend
+    rpc loadServerConfiguration(Request) returns (ServerConfiguration) {};
+    rpc setServerConfiguration(ServerConfiguration) returns (Confirmation) {};
 }
 
 message ColorMessage {
@@ -36,20 +39,21 @@ message Confirmation {
     bool success = 1;
 }
 
-message InitMessage {
+message Request {
     string deviceID = 1;
     string password = 2;
 }
 
-message LoadConfigRequest {
-    string deviceID = 1;
-    string password = 2;
-}
-
-message ServerConfig {
-    string serverName = 1;
-    FadeTime fadeTime = 2;
-    IPVersion ipVersion = 3;
+message ServerConfiguration {
+    string bindTo = 1;
+    Pins pins = 2;
+    bool debug = 3;
+    string updateURL = 4;
+    string configurationFile = 5;
+    string password = 6;
+    string piBlaster = 7;
+    string serverName = 8;
+    IPVersion ipVersion = 9;
 }
 
 message ChangeParameterMessage {
