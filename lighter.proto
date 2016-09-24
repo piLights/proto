@@ -7,9 +7,9 @@ package LighterGRPC;
 
 service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
-    rpc checkConnection(InitMessage) returns (stream ColorMessage) {};
+    rpc checkConnection(Request) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfiguration(LoadConfigurationRequest) returns (ServerConfiguration) {};
+    rpc loadServerConfiguration(Request) returns (ServerConfiguration) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
     rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc loadServerLog(LogRequest) returns (stream LogEntry) {};
@@ -36,12 +36,7 @@ message Confirmation {
     bool success = 1;
 }
 
-message InitMessage {
-    string deviceID = 1;
-    string password = 2;
-}
-
-message LoadConfigurationRequest {
+message Request {
     string deviceID = 1;
     string password = 2;
 }
