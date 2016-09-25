@@ -1,8 +1,0 @@
-image: jsfn/golang-protoc
-
-before_script:
-    - "go get -v github.com/ckaznocha/protoc-gen-lint"
-
-Lint:
-    script:
-        - "protoc --lint_out=. *.proto"
