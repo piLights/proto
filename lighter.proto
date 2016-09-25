@@ -6,16 +6,16 @@ option java_package = "de.grunicke.lighter";
 package LighterGRPC;
 
 service Lighter {
-    rpc setColor(ColorMessage) returns (Confirmation) {};
-    rpc checkConnection(Request) returns (stream ColorMessage) {};
-    rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
-    rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
-    rpc loadServerLog(LogRequest) returns (stream LogEntry) {};
+    rpc ChangeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
+    rpc CheckConnection(Request) returns (stream ColorMessage) {};
+    rpc LoadServerLog(LogRequest) returns (stream LogEntry) {};
+    rpc ScheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
+    rpc SetColor(ColorMessage) returns (Confirmation) {};
+    rpc SwitchState(StateMessage) returns (Confirmation) {};
 
     //Get and set the Configuration of the backend
-    rpc loadServerConfiguration(Request) returns (ServerConfiguration) {};
-    rpc setServerConfiguration(ServerConfiguration) returns (Confirmation) {};
+    rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {};
+    rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {};
 }
 
 message ColorMessage {
