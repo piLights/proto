@@ -24,14 +24,14 @@ message ColorMessage {
     int32 g = 3;
     int32 b = 4;
     int32 opacity = 5;
-    string device_id = 6;
+    string deviceID = 6;
     string password = 7;
 }
 
 
 message StateMessage {
     bool onstate = 1;
-    string device_id = 2;
+    string deviceID = 2;
     string password = 3;
 }
 
@@ -40,28 +40,28 @@ message Confirmation {
 }
 
 message Request {
-    string device_id = 1;
+    string deviceID = 1;
     string password = 2;
 }
 
 message ServerConfiguration {
-    string bind_to = 1;
+    string bindTo = 1;
     Pins pins = 2;
     bool debug = 3;
-    string update_url = 4;
-    string configuration_file = 5;
+    string updateURL = 4;
+    string configurationFile = 5;
     string password = 6;
-    string pi_blaster = 7;
-    string server_name = 8;
-    IPVersion ip_version = 9;
+    string piBlaster = 7;
+    string serverName = 8;
+    IPVersion ipVersion = 9;
 }
 
 message ChangeParameterMessage {
     string password = 1;
     oneof parameter {
-        string server_name = 2;
-        FadeTime fade_time = 3;
-        IPVersion ip_version = 4;
+        string serverName = 2;
+        FadeTime fadeTime = 3;
+        IPVersion ipVersion = 4;
         Pins pins = 5;
     }
 }
@@ -80,16 +80,16 @@ message IPVersion {
 }
 
 message Pins {
-    int32 red_pin = 1;
-    int32 green_pin = 2;
-    int32 blue_pin = 3;
-    int32 white_pin = 4;
+    int32 redPin = 1;
+    int32 greenPin = 2;
+    int32 bluePin = 3;
+    int32 whitePin = 4;
 }
 
 message ScheduledSwitch {
     int64 time = 1;
     bool onstate = 2;
-    string device_id = 3;
+    string deviceID = 3;
     string password = 4;
 }
 
@@ -114,7 +114,7 @@ message LogRequest {
         WARN = 3;
         ERROR = 4;
     }
-    LogLevel log_level = 1;
+    LogLevel logLevel = 1;
     int64 amount = 2;
     string password = 3;
 }
