@@ -9,10 +9,13 @@ service Lighter {
     rpc setColor(ColorMessage) returns (Confirmation) {};
     rpc checkConnection(Request) returns (stream ColorMessage) {};
     rpc switchState(StateMessage) returns (Confirmation) {};
-    rpc loadServerConfiguration(Request) returns (ServerConfiguration) {};
     rpc changeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
     rpc scheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc loadServerLog(LogRequest) returns (stream LogEntry) {};
+
+    //Get and set the Configuration of the backend
+    rpc loadServerConfiguration(Request) returns (ServerConfiguration) {};
+    rpc setServerConfiguration(ServerConfiguration) returns (Confirmation) {};
 }
 
 message ColorMessage {
@@ -42,9 +45,15 @@ message Request {
 }
 
 message ServerConfiguration {
-    string serverName = 1;
-    FadeTime fadeTime = 2;
-    IPVersion ipVersion = 3;
+    string bindTo = 1;
+    Pins pins = 2;
+    bool debug = 3;
+    string updateURL = 4;
+    string configurationFile = 5;
+    string password = 6;
+    string piBlaster = 7;
+    string serverName = 8;
+    IPVersion ipVersion = 9;
 }
 
 message ChangeParameterMessage {
