@@ -24,14 +24,14 @@ message ColorMessage {
     int32 g = 3;
     int32 b = 4;
     int32 opacity = 5;
-    string device_ID = 6;
+    string device_id = 6;
     string password = 7;
 }
 
 
 message StateMessage {
     bool onstate = 1;
-    string device_ID = 2;
+    string device_id = 2;
     string password = 3;
 }
 
@@ -40,15 +40,15 @@ message Confirmation {
 }
 
 message Request {
-    string device_ID = 1;
+    string device_id = 1;
     string password = 2;
 }
 
 message ServerConfiguration {
-    string bindTo = 1;
+    string bind_to = 1;
     Pins pins = 2;
     bool debug = 3;
-    string update_URL = 4;
+    string update_url = 4;
     string configuration_file = 5;
     string password = 6;
     string pi_blaster = 7;
@@ -89,7 +89,7 @@ message Pins {
 message ScheduledSwitch {
     int64 time = 1;
     bool onstate = 2;
-    string device_ID = 3;
+    string device_id = 3;
     string password = 4;
 }
 
