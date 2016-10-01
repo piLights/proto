@@ -107,13 +107,6 @@ enum LogLevel {
 }
 
 message LogRequest {
-    enum LogLevel {
-        TRACE = 0;
-        DEBUG = 1;
-        INFO = 2;
-        WARN = 3;
-        ERROR = 4;
-    }
     LogLevel logLevel = 1;
     int64 amount = 2;
     string password = 3;
