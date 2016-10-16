@@ -16,6 +16,8 @@ service Lighter {
     //Get and set the Configuration of the backend
     rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {};
     rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {};
+
+    rpc Version(Request) returns (BackendVersion) {};
 }
 
 message ColorMessage {
@@ -110,4 +112,9 @@ message LogRequest {
     LogLevel logLevel = 1;
     int32 amount = 2;
     string password = 3;
+}
+
+message BackendVersion {
+    string VersionCode = 1;
+    bool UpdateAvailable = 2;
 }
