@@ -1,1 +1,1 @@
-lighter.pb.go -diff
+*.pb.go -diff

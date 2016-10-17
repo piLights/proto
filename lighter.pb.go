@@ -2,27 +2,6 @@
 // source: lighter.proto
 // DO NOT EDIT!
 
-/*
-Package LighterGRPC is a generated protocol buffer package.
-
-It is generated from these files:
-	lighter.proto
-
-It has these top-level messages:
-	ColorMessage
-	StateMessage
-	Confirmation
-	Request
-	ServerConfiguration
-	ChangeParameterMessage
-	FadeTime
-	IPVersion
-	Pins
-	ScheduledSwitch
-	LogEntry
-	LogRequest
-	BackendVersion
-*/
 package LighterGRPC
 
 import proto "github.com/golang/protobuf/proto"
@@ -38,12 +17,6 @@ import (
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type LogLevel int32
 
@@ -73,31 +46,7 @@ var LogLevel_value = map[string]int32{
 func (x LogLevel) String() string {
 	return proto.EnumName(LogLevel_name, int32(x))
 }
-func (LogLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
-
-type IPVersion_Version int32
-
-const (
-	IPVersion_DUAL     IPVersion_Version = 0
-	IPVersion_IPV4ONLY IPVersion_Version = 1
-	IPVersion_IPV6ONLY IPVersion_Version = 2
-)
-
-var IPVersion_Version_name = map[int32]string{
-	0: "DUAL",
-	1: "IPV4ONLY",
-	2: "IPV6ONLY",
-}
-var IPVersion_Version_value = map[string]int32{
-	"DUAL":     0,
-	"IPV4ONLY": 1,
-	"IPV6ONLY": 2,
-}
-
-func (x IPVersion_Version) String() string {
-	return proto.EnumName(IPVersion_Version_name, int32(x))
-}
-func (IPVersion_Version) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{7, 0} }
+func (LogLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 type ColorMessage struct {
 	Onstate  bool   `protobuf:"varint,1,opt,name=onstate" json:"onstate,omitempty"`
@@ -112,7 +61,7 @@ type ColorMessage struct {
 func (m *ColorMessage) Reset()                    { *m = ColorMessage{} }
 func (m *ColorMessage) String() string            { return proto.CompactTextString(m) }
 func (*ColorMessage) ProtoMessage()               {}
-func (*ColorMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*ColorMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 type StateMessage struct {
 	Onstate  bool   `protobuf:"varint,1,opt,name=onstate" json:"onstate,omitempty"`
@@ -123,267 +72,7 @@ type StateMessage struct {
 func (m *StateMessage) Reset()                    { *m = StateMessage{} }
 func (m *StateMessage) String() string            { return proto.CompactTextString(m) }
 func (*StateMessage) ProtoMessage()               {}
-func (*StateMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
-
-type Confirmation struct {
-	Success bool `protobuf:"varint,1,opt,name=success" json:"success,omitempty"`
-}
-
-func (m *Confirmation) Reset()                    { *m = Confirmation{} }
-func (m *Confirmation) String() string            { return proto.CompactTextString(m) }
-func (*Confirmation) ProtoMessage()               {}
-func (*Confirmation) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
-
-type Request struct {
-	DeviceID string `protobuf:"bytes,1,opt,name=deviceID" json:"deviceID,omitempty"`
-	Password string `protobuf:"bytes,2,opt,name=password" json:"password,omitempty"`
-}
-
-func (m *Request) Reset()                    { *m = Request{} }
-func (m *Request) String() string            { return proto.CompactTextString(m) }
-func (*Request) ProtoMessage()               {}
-func (*Request) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
-
-type ServerConfiguration struct {
-	BindTo            string     `protobuf:"bytes,1,opt,name=bindTo" json:"bindTo,omitempty"`
-	Pins              *Pins      `protobuf:"bytes,2,opt,name=pins" json:"pins,omitempty"`
-	Debug             bool       `protobuf:"varint,3,opt,name=debug" json:"debug,omitempty"`
-	UpdateURL         string     `protobuf:"bytes,4,opt,name=updateURL" json:"updateURL,omitempty"`
-	ConfigurationFile string     `protobuf:"bytes,5,opt,name=configurationFile" json:"configurationFile,omitempty"`
-	Password          string     `protobuf:"bytes,6,opt,name=password" json:"password,omitempty"`
-	PiBlaster         string     `protobuf:"bytes,7,opt,name=piBlaster" json:"piBlaster,omitempty"`
-	ServerName        string     `protobuf:"bytes,8,opt,name=serverName" json:"serverName,omitempty"`
-	IpVersion         *IPVersion `protobuf:"bytes,9,opt,name=ipVersion" json:"ipVersion,omitempty"`
-}
-
-func (m *ServerConfiguration) Reset()                    { *m = ServerConfiguration{} }
-func (m *ServerConfiguration) String() string            { return proto.CompactTextString(m) }
-func (*ServerConfiguration) ProtoMessage()               {}
-func (*ServerConfiguration) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
-
-func (m *ServerConfiguration) GetPins() *Pins {
-	if m != nil {
-		return m.Pins
-	}
-	return nil
-}
-
-func (m *ServerConfiguration) GetIpVersion() *IPVersion {
-	if m != nil {
-		return m.IpVersion
-	}
-	return nil
-}
-
-type ChangeParameterMessage struct {
-	Password string `protobuf:"bytes,1,opt,name=password" json:"password,omitempty"`
-	// Types that are valid to be assigned to Parameter:
-	//	*ChangeParameterMessage_ServerName
-	//	*ChangeParameterMessage_FadeTime
-	//	*ChangeParameterMessage_IpVersion
-	//	*ChangeParameterMessage_Pins
-	Parameter isChangeParameterMessage_Parameter `protobuf_oneof:"parameter"`
-}
-
-func (m *ChangeParameterMessage) Reset()                    { *m = ChangeParameterMessage{} }
-func (m *ChangeParameterMessage) String() string            { return proto.CompactTextString(m) }
-func (*ChangeParameterMessage) ProtoMessage()               {}
-func (*ChangeParameterMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
-
-type isChangeParameterMessage_Parameter interface {
-	isChangeParameterMessage_Parameter()
-}
-
-type ChangeParameterMessage_ServerName struct {
-	ServerName string `protobuf:"bytes,2,opt,name=serverName,oneof"`
-}
-type ChangeParameterMessage_FadeTime struct {
-	FadeTime *FadeTime `protobuf:"bytes,3,opt,name=fadeTime,oneof"`
-}
-type ChangeParameterMessage_IpVersion struct {
-	IpVersion *IPVersion `protobuf:"bytes,4,opt,name=ipVersion,oneof"`
-}
-type ChangeParameterMessage_Pins struct {
-	Pins *Pins `protobuf:"bytes,5,opt,name=pins,oneof"`
-}
-
-func (*ChangeParameterMessage_ServerName) isChangeParameterMessage_Parameter() {}
-func (*ChangeParameterMessage_FadeTime) isChangeParameterMessage_Parameter()   {}
-func (*ChangeParameterMessage_IpVersion) isChangeParameterMessage_Parameter()  {}
-func (*ChangeParameterMessage_Pins) isChangeParameterMessage_Parameter()       {}
-
-func (m *ChangeParameterMessage) GetParameter() isChangeParameterMessage_Parameter {
-	if m != nil {
-		return m.Parameter
-	}
-	return nil
-}
-
-func (m *ChangeParameterMessage) GetServerName() string {
-	if x, ok := m.GetParameter().(*ChangeParameterMessage_ServerName); ok {
-		return x.ServerName
-	}
-	return ""
-}
-
-func (m *ChangeParameterMessage) GetFadeTime() *FadeTime {
-	if x, ok := m.GetParameter().(*ChangeParameterMessage_FadeTime); ok {
-		return x.FadeTime
-	}
-	return nil
-}
-
-func (m *ChangeParameterMessage) GetIpVersion() *IPVersion {
-	if x, ok := m.GetParameter().(*ChangeParameterMessage_IpVersion); ok {
-		return x.IpVersion
-	}
-	return nil
-}
-
-func (m *ChangeParameterMessage) GetPins() *Pins {
-	if x, ok := m.GetParameter().(*ChangeParameterMessage_Pins); ok {
-		return x.Pins
-	}
-	return nil
-}
-
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*ChangeParameterMessage) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _ChangeParameterMessage_OneofMarshaler, _ChangeParameterMessage_OneofUnmarshaler, _ChangeParameterMessage_OneofSizer, []interface{}{
-		(*ChangeParameterMessage_ServerName)(nil),
-		(*ChangeParameterMessage_FadeTime)(nil),
-		(*ChangeParameterMessage_IpVersion)(nil),
-		(*ChangeParameterMessage_Pins)(nil),
-	}
-}
-
-func _ChangeParameterMessage_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*ChangeParameterMessage)
-	// parameter
-	switch x := m.Parameter.(type) {
-	case *ChangeParameterMessage_ServerName:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.ServerName)
-	case *ChangeParameterMessage_FadeTime:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.FadeTime); err != nil {
-			return err
-		}
-	case *ChangeParameterMessage_IpVersion:
-		b.EncodeVarint(4<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.IpVersion); err != nil {
-			return err
-		}
-	case *ChangeParameterMessage_Pins:
-		b.EncodeVarint(5<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.Pins); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("ChangeParameterMessage.Parameter has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _ChangeParameterMessage_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*ChangeParameterMessage)
-	switch tag {
-	case 2: // parameter.serverName
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.Parameter = &ChangeParameterMessage_ServerName{x}
-		return true, err
-	case 3: // parameter.fadeTime
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(FadeTime)
-		err := b.DecodeMessage(msg)
-		m.Parameter = &ChangeParameterMessage_FadeTime{msg}
-		return true, err
-	case 4: // parameter.ipVersion
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(IPVersion)
-		err := b.DecodeMessage(msg)
-		m.Parameter = &ChangeParameterMessage_IpVersion{msg}
-		return true, err
-	case 5: // parameter.pins
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(Pins)
-		err := b.DecodeMessage(msg)
-		m.Parameter = &ChangeParameterMessage_Pins{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _ChangeParameterMessage_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*ChangeParameterMessage)
-	// parameter
-	switch x := m.Parameter.(type) {
-	case *ChangeParameterMessage_ServerName:
-		n += proto.SizeVarint(2<<3 | proto.WireBytes)
-		n += proto.SizeVarint(uint64(len(x.ServerName)))
-		n += len(x.ServerName)
-	case *ChangeParameterMessage_FadeTime:
-		s := proto.Size(x.FadeTime)
-		n += proto.SizeVarint(3<<3 | proto.WireBytes)
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *ChangeParameterMessage_IpVersion:
-		s := proto.Size(x.IpVersion)
-		n += proto.SizeVarint(4<<3 | proto.WireBytes)
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *ChangeParameterMessage_Pins:
-		s := proto.Size(x.Pins)
-		n += proto.SizeVarint(5<<3 | proto.WireBytes)
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
-}
-
-type FadeTime struct {
-	Milliseconds int32 `protobuf:"varint,1,opt,name=milliseconds" json:"milliseconds,omitempty"`
-}
-
-func (m *FadeTime) Reset()                    { *m = FadeTime{} }
-func (m *FadeTime) String() string            { return proto.CompactTextString(m) }
-func (*FadeTime) ProtoMessage()               {}
-func (*FadeTime) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
-
-type IPVersion struct {
-	Version IPVersion_Version `protobuf:"varint,1,opt,name=version,enum=LighterGRPC.IPVersion_Version" json:"version,omitempty"`
-}
-
-func (m *IPVersion) Reset()                    { *m = IPVersion{} }
-func (m *IPVersion) String() string            { return proto.CompactTextString(m) }
-func (*IPVersion) ProtoMessage()               {}
-func (*IPVersion) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
-
-type Pins struct {
-	RedPin   int32 `protobuf:"varint,1,opt,name=redPin" json:"redPin,omitempty"`
-	GreenPin int32 `protobuf:"varint,2,opt,name=greenPin" json:"greenPin,omitempty"`
-	BluePin  int32 `protobuf:"varint,3,opt,name=bluePin" json:"bluePin,omitempty"`
-	WhitePin int32 `protobuf:"varint,4,opt,name=whitePin" json:"whitePin,omitempty"`
-}
-
-func (m *Pins) Reset()                    { *m = Pins{} }
-func (m *Pins) String() string            { return proto.CompactTextString(m) }
-func (*Pins) ProtoMessage()               {}
-func (*Pins) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (*StateMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 type ScheduledSwitch struct {
 	Time     int64  `protobuf:"varint,1,opt,name=time" json:"time,omitempty"`
@@ -395,7 +84,7 @@ type ScheduledSwitch struct {
 func (m *ScheduledSwitch) Reset()                    { *m = ScheduledSwitch{} }
 func (m *ScheduledSwitch) String() string            { return proto.CompactTextString(m) }
 func (*ScheduledSwitch) ProtoMessage()               {}
-func (*ScheduledSwitch) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (*ScheduledSwitch) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 type LogEntry struct {
 	Time    int64  `protobuf:"varint,1,opt,name=time" json:"time,omitempty"`
@@ -405,7 +94,7 @@ type LogEntry struct {
 func (m *LogEntry) Reset()                    { *m = LogEntry{} }
 func (m *LogEntry) String() string            { return proto.CompactTextString(m) }
 func (*LogEntry) ProtoMessage()               {}
-func (*LogEntry) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (*LogEntry) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{3} }
 
 type LogRequest struct {
 	LogLevel LogLevel `protobuf:"varint,1,opt,name=logLevel,enum=LighterGRPC.LogLevel" json:"logLevel,omitempty"`
@@ -416,34 +105,15 @@ type LogRequest struct {
 func (m *LogRequest) Reset()                    { *m = LogRequest{} }
 func (m *LogRequest) String() string            { return proto.CompactTextString(m) }
 func (*LogRequest) ProtoMessage()               {}
-func (*LogRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
-
-type BackendVersion struct {
-	VersionCode     string `protobuf:"bytes,1,opt,name=VersionCode,json=versionCode" json:"VersionCode,omitempty"`
-	UpdateAvailable bool   `protobuf:"varint,2,opt,name=UpdateAvailable,json=updateAvailable" json:"UpdateAvailable,omitempty"`
-}
-
-func (m *BackendVersion) Reset()                    { *m = BackendVersion{} }
-func (m *BackendVersion) String() string            { return proto.CompactTextString(m) }
-func (*BackendVersion) ProtoMessage()               {}
-func (*BackendVersion) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+func (*LogRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{4} }
 
 func init() {
 	proto.RegisterType((*ColorMessage)(nil), "LighterGRPC.ColorMessage")
 	proto.RegisterType((*StateMessage)(nil), "LighterGRPC.StateMessage")
-	proto.RegisterType((*Confirmation)(nil), "LighterGRPC.Confirmation")
-	proto.RegisterType((*Request)(nil), "LighterGRPC.Request")
-	proto.RegisterType((*ServerConfiguration)(nil), "LighterGRPC.ServerConfiguration")
-	proto.RegisterType((*ChangeParameterMessage)(nil), "LighterGRPC.ChangeParameterMessage")
-	proto.RegisterType((*FadeTime)(nil), "LighterGRPC.FadeTime")
-	proto.RegisterType((*IPVersion)(nil), "LighterGRPC.IPVersion")
-	proto.RegisterType((*Pins)(nil), "LighterGRPC.Pins")
 	proto.RegisterType((*ScheduledSwitch)(nil), "LighterGRPC.ScheduledSwitch")
 	proto.RegisterType((*LogEntry)(nil), "LighterGRPC.LogEntry")
 	proto.RegisterType((*LogRequest)(nil), "LighterGRPC.LogRequest")
-	proto.RegisterType((*BackendVersion)(nil), "LighterGRPC.BackendVersion")
 	proto.RegisterEnum("LighterGRPC.LogLevel", LogLevel_name, LogLevel_value)
-	proto.RegisterEnum("LighterGRPC.IPVersion_Version", IPVersion_Version_name, IPVersion_Version_value)
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -457,16 +127,11 @@ const _ = grpc.SupportPackageIsVersion3
 // Client API for Lighter service
 
 type LighterClient interface {
-	ChangeServerParameter(ctx context.Context, in *ChangeParameterMessage, opts ...grpc.CallOption) (*Confirmation, error)
 	CheckConnection(ctx context.Context, in *Request, opts ...grpc.CallOption) (Lighter_CheckConnectionClient, error)
 	LoadServerLog(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (Lighter_LoadServerLogClient, error)
 	ScheduleSwitchState(ctx context.Context, in *ScheduledSwitch, opts ...grpc.CallOption) (*Confirmation, error)
 	SetColor(ctx context.Context, in *ColorMessage, opts ...grpc.CallOption) (*Confirmation, error)
 	SwitchState(ctx context.Context, in *StateMessage, opts ...grpc.CallOption) (*Confirmation, error)
-	// Get and set the Configuration of the backend
-	LoadServerConfiguration(ctx context.Context, in *Request, opts ...grpc.CallOption) (*ServerConfiguration, error)
-	SetServerConfiguration(ctx context.Context, in *ServerConfiguration, opts ...grpc.CallOption) (*Confirmation, error)
-	Version(ctx context.Context, in *Request, opts ...grpc.CallOption) (*BackendVersion, error)
 }
 
 type lighterClient struct {
@@ -475,15 +140,6 @@ type lighterClient struct {
 
 func NewLighterClient(cc *grpc.ClientConn) LighterClient {
 	return &lighterClient{cc}
-}
-
-func (c *lighterClient) ChangeServerParameter(ctx context.Context, in *ChangeParameterMessage, opts ...grpc.CallOption) (*Confirmation, error) {
-	out := new(Confirmation)
-	err := grpc.Invoke(ctx, "/LighterGRPC.Lighter/ChangeServerParameter", in, out, c.cc, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *lighterClient) CheckConnection(ctx context.Context, in *Request, opts ...grpc.CallOption) (Lighter_CheckConnectionClient, error) {
@@ -577,68 +233,18 @@ func (c *lighterClient) SwitchState(ctx context.Context, in *StateMessage, opts 
 	return out, nil
 }
 
-func (c *lighterClient) LoadServerConfiguration(ctx context.Context, in *Request, opts ...grpc.CallOption) (*ServerConfiguration, error) {
-	out := new(ServerConfiguration)
-	err := grpc.Invoke(ctx, "/LighterGRPC.Lighter/LoadServerConfiguration", in, out, c.cc, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *lighterClient) SetServerConfiguration(ctx context.Context, in *ServerConfiguration, opts ...grpc.CallOption) (*Confirmation, error) {
-	out := new(Confirmation)
-	err := grpc.Invoke(ctx, "/LighterGRPC.Lighter/SetServerConfiguration", in, out, c.cc, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *lighterClient) Version(ctx context.Context, in *Request, opts ...grpc.CallOption) (*BackendVersion, error) {
-	out := new(BackendVersion)
-	err := grpc.Invoke(ctx, "/LighterGRPC.Lighter/Version", in, out, c.cc, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Lighter service
 
 type LighterServer interface {
-	ChangeServerParameter(context.Context, *ChangeParameterMessage) (*Confirmation, error)
 	CheckConnection(*Request, Lighter_CheckConnectionServer) error
 	LoadServerLog(*LogRequest, Lighter_LoadServerLogServer) error
 	ScheduleSwitchState(context.Context, *ScheduledSwitch) (*Confirmation, error)
 	SetColor(context.Context, *ColorMessage) (*Confirmation, error)
 	SwitchState(context.Context, *StateMessage) (*Confirmation, error)
-	// Get and set the Configuration of the backend
-	LoadServerConfiguration(context.Context, *Request) (*ServerConfiguration, error)
-	SetServerConfiguration(context.Context, *ServerConfiguration) (*Confirmation, error)
-	Version(context.Context, *Request) (*BackendVersion, error)
 }
 
 func RegisterLighterServer(s *grpc.Server, srv LighterServer) {
 	s.RegisterService(&_Lighter_serviceDesc, srv)
-}
-
-func _Lighter_ChangeServerParameter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeParameterMessage)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LighterServer).ChangeServerParameter(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/LighterGRPC.Lighter/ChangeServerParameter",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LighterServer).ChangeServerParameter(ctx, req.(*ChangeParameterMessage))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Lighter_CheckConnection_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -737,68 +343,10 @@ func _Lighter_SwitchState_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Lighter_LoadServerConfiguration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LighterServer).LoadServerConfiguration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/LighterGRPC.Lighter/LoadServerConfiguration",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LighterServer).LoadServerConfiguration(ctx, req.(*Request))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Lighter_SetServerConfiguration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServerConfiguration)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LighterServer).SetServerConfiguration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/LighterGRPC.Lighter/SetServerConfiguration",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LighterServer).SetServerConfiguration(ctx, req.(*ServerConfiguration))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Lighter_Version_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LighterServer).Version(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/LighterGRPC.Lighter/Version",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LighterServer).Version(ctx, req.(*Request))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Lighter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "LighterGRPC.Lighter",
 	HandlerType: (*LighterServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "ChangeServerParameter",
-			Handler:    _Lighter_ChangeServerParameter_Handler,
-		},
 		{
 			MethodName: "ScheduleSwitchState",
 			Handler:    _Lighter_ScheduleSwitchState_Handler,
@@ -810,18 +358,6 @@ var _Lighter_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SwitchState",
 			Handler:    _Lighter_SwitchState_Handler,
-		},
-		{
-			MethodName: "LoadServerConfiguration",
-			Handler:    _Lighter_LoadServerConfiguration_Handler,
-		},
-		{
-			MethodName: "SetServerConfiguration",
-			Handler:    _Lighter_SetServerConfiguration_Handler,
-		},
-		{
-			MethodName: "Version",
-			Handler:    _Lighter_Version_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -836,71 +372,42 @@ var _Lighter_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: fileDescriptor0,
+	Metadata: fileDescriptor1,
 }
 
-func init() { proto.RegisterFile("lighter.proto", fileDescriptor0) }
+func init() { proto.RegisterFile("lighter.proto", fileDescriptor1) }
 
-var fileDescriptor0 = []byte{
-	// 954 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x56, 0x4b, 0x6f, 0xdb, 0x46,
-	0x10, 0x16, 0xf5, 0xb0, 0xa8, 0x91, 0x13, 0x2b, 0x9b, 0xc4, 0x66, 0xd3, 0x20, 0x30, 0x58, 0x14,
-	0x35, 0x8a, 0x42, 0x6d, 0x9d, 0x20, 0xc8, 0xa9, 0x85, 0x24, 0xdb, 0xa9, 0x01, 0x55, 0x16, 0x56,
-	0x71, 0x83, 0x00, 0x3d, 0x94, 0x22, 0x37, 0xd4, 0x22, 0x14, 0xa9, 0xf2, 0x21, 0x23, 0xff, 0xa7,
-	0x3f, 0xa3, 0xe7, 0xfe, 0xa7, 0xde, 0xb2, 0x2f, 0x8a, 0x5c, 0x59, 0xa6, 0x6f, 0xfc, 0x66, 0x66,
-	0x67, 0xbe, 0x79, 0xec, 0x2c, 0xe1, 0x41, 0x40, 0xfd, 0x45, 0x4a, 0xe2, 0xfe, 0x2a, 0x8e, 0xd2,
-	0x08, 0x75, 0xc7, 0x12, 0xbe, 0xc5, 0xd3, 0x91, 0xfd, 0x8f, 0x01, 0xfb, 0xa3, 0x28, 0x88, 0xe2,
-	0xdf, 0x49, 0x92, 0x38, 0x3e, 0x41, 0x16, 0xb4, 0xa3, 0x30, 0x49, 0x9d, 0x94, 0x58, 0xc6, 0xb1,
-	0x71, 0x62, 0xe2, 0x1c, 0xa2, 0x7d, 0x30, 0x62, 0xab, 0xce, 0x64, 0x2d, 0x6c, 0xc4, 0x1c, 0xf9,
-	0x56, 0x43, 0x22, 0x9f, 0xa3, 0xb9, 0xd5, 0x94, 0x68, 0x2e, 0x7c, 0xac, 0x1c, 0x97, 0xa6, 0x9f,
-	0xad, 0x96, 0x90, 0xe5, 0x10, 0x3d, 0x03, 0xd3, 0x23, 0x6b, 0xea, 0x92, 0xcb, 0x33, 0x6b, 0x8f,
-	0xa9, 0x3a, 0x78, 0x83, 0xb9, 0x6e, 0xe5, 0x24, 0xc9, 0x4d, 0x14, 0x7b, 0x56, 0x5b, 0xea, 0x72,
-	0x6c, 0xff, 0x05, 0xfb, 0x33, 0x4e, 0xe2, 0x7e, 0x96, 0xe5, 0x08, 0xf5, 0x8a, 0x08, 0x8d, 0xad,
-	0x08, 0x27, 0xbc, 0x0e, 0xe1, 0x47, 0x1a, 0x2f, 0x9d, 0x94, 0x46, 0x21, 0x8f, 0x90, 0x64, 0xae,
-	0xcb, 0xe2, 0xe5, 0x11, 0x14, 0xb4, 0x07, 0xd0, 0xc6, 0xe4, 0xef, 0x8c, 0x24, 0xa9, 0x16, 0xcc,
-	0xa8, 0x08, 0x56, 0xdf, 0x0a, 0xf6, 0x5f, 0x1d, 0x1e, 0xcf, 0x48, 0xbc, 0x26, 0xb1, 0x88, 0xe9,
-	0x67, 0xb1, 0x0c, 0x7a, 0x08, 0x7b, 0x73, 0x1a, 0x7a, 0xef, 0x22, 0xe5, 0x4d, 0x21, 0xf4, 0x2d,
-	0x34, 0x57, 0x34, 0x4c, 0x84, 0x9f, 0xee, 0xe9, 0xa3, 0x7e, 0xa9, 0x83, 0xfd, 0x29, 0x53, 0x60,
-	0xa1, 0x46, 0x4f, 0xa0, 0xe5, 0x91, 0x79, 0x26, 0xfb, 0x62, 0x62, 0x09, 0xd0, 0x73, 0xe8, 0x64,
-	0x2b, 0x8f, 0xd5, 0xe6, 0x1a, 0x8f, 0x45, 0x8f, 0x3a, 0xb8, 0x10, 0xa0, 0x1f, 0xe0, 0x91, 0x5b,
-	0xe6, 0x70, 0x41, 0x03, 0x22, 0xba, 0xd6, 0xc1, 0xb7, 0x15, 0x5a, 0x52, 0x7b, 0x7a, 0x52, 0x3c,
-	0xce, 0x8a, 0x0e, 0x03, 0x27, 0x61, 0xcc, 0x54, 0x03, 0x0b, 0x01, 0x7a, 0x01, 0x90, 0x88, 0x8c,
-	0x27, 0xce, 0x92, 0x58, 0xa6, 0x50, 0x97, 0x24, 0xe8, 0x15, 0x74, 0xe8, 0xea, 0x0f, 0x12, 0x27,
-	0x2c, 0x94, 0xd5, 0x11, 0x79, 0x1e, 0x6a, 0x79, 0x5e, 0x4e, 0x95, 0x16, 0x17, 0x86, 0xf6, 0xff,
-	0x06, 0x1c, 0x8e, 0x16, 0x4e, 0xe8, 0x93, 0xa9, 0x13, 0x33, 0x37, 0xcc, 0x38, 0x1f, 0x91, 0x32,
-	0x55, 0x63, 0x8b, 0xea, 0xb1, 0x46, 0x46, 0x74, 0xe7, 0xb7, 0x9a, 0x46, 0xe7, 0x25, 0x98, 0x1f,
-	0x1d, 0x8f, 0xbc, 0xa3, 0x4c, 0xdf, 0x10, 0x6c, 0x9e, 0x6a, 0x6c, 0x2e, 0x94, 0x92, 0x1d, 0xdb,
-	0x18, 0xa2, 0xd7, 0xe5, 0x1c, 0x9a, 0x55, 0x39, 0xb0, 0x63, 0x85, 0x29, 0xfa, 0x4e, 0xb5, 0xb7,
-	0x75, 0x47, 0x7b, 0x99, 0xb5, 0x30, 0x18, 0x76, 0x59, 0x89, 0xf3, 0x3c, 0xed, 0x3e, 0x98, 0x39,
-	0x0b, 0x64, 0xc3, 0xfe, 0x92, 0x06, 0x01, 0x4d, 0x08, 0xeb, 0x99, 0x27, 0x47, 0xb6, 0x85, 0x35,
-	0x99, 0xbd, 0x86, 0xce, 0x26, 0x3e, 0x7a, 0x03, 0xed, 0xb5, 0x22, 0xca, 0x6d, 0x1f, 0x9e, 0xbe,
-	0xd8, 0x4d, 0xb4, 0x9f, 0x17, 0x3d, 0x37, 0xb7, 0x7f, 0x84, 0x76, 0xee, 0xc4, 0x84, 0xe6, 0xd9,
-	0xf5, 0x60, 0xdc, 0xab, 0xb1, 0xfb, 0x6f, 0xb2, 0x23, 0xaf, 0xae, 0x26, 0xe3, 0x0f, 0x3d, 0x43,
-	0xa1, 0xd7, 0x02, 0xd5, 0xed, 0x15, 0x34, 0x79, 0x12, 0x7c, 0xb8, 0x63, 0xe2, 0xb1, 0x4f, 0xc5,
-	0x4e, 0x21, 0xde, 0x28, 0x3f, 0x26, 0x24, 0xe4, 0x1a, 0xb9, 0x5e, 0x36, 0x98, 0xdf, 0xc2, 0x79,
-	0x90, 0x11, 0xae, 0x92, 0xbb, 0x26, 0x87, 0xfc, 0xd4, 0xcd, 0x82, 0xa6, 0x42, 0x25, 0x17, 0xcf,
-	0x06, 0xdb, 0x37, 0x70, 0x30, 0x73, 0x17, 0xc4, 0xcb, 0x02, 0xe2, 0xcd, 0x6e, 0x68, 0xea, 0x2e,
-	0x10, 0x82, 0x66, 0xca, 0x7b, 0xc9, 0x43, 0x37, 0xb0, 0xf8, 0x2e, 0x2f, 0x91, 0xfa, 0xdd, 0x4b,
-	0xa4, 0x51, 0x71, 0xaf, 0x9b, 0x5b, 0xf7, 0xfa, 0x0d, 0x98, 0xe3, 0xc8, 0x3f, 0x0f, 0xd3, 0xf8,
-	0xf3, 0x5d, 0x11, 0x97, 0x72, 0x3c, 0xd5, 0x4a, 0xc8, 0xa1, 0x9d, 0x00, 0xb0, 0x93, 0xf9, 0x5e,
-	0xf9, 0x19, 0xcc, 0x20, 0xf2, 0xc7, 0x64, 0x4d, 0x02, 0xd5, 0x1e, 0x7d, 0xfa, 0xc6, 0x4a, 0x89,
-	0x37, 0x66, 0xbc, 0xba, 0xce, 0x32, 0xca, 0xc2, 0x54, 0xd5, 0x50, 0xa1, 0xca, 0x9d, 0xf7, 0x27,
-	0x3c, 0x1c, 0x3a, 0xee, 0x27, 0x12, 0x7a, 0x79, 0x47, 0x8f, 0xa1, 0xab, 0x3e, 0x47, 0x91, 0x47,
-	0xd4, 0xbd, 0xe9, 0xae, 0x0b, 0x11, 0x3a, 0x81, 0x83, 0x6b, 0xb1, 0x3c, 0x06, 0x6b, 0x87, 0x06,
-	0xce, 0x3c, 0xc8, 0x8b, 0x77, 0x90, 0xe9, 0xe2, 0xef, 0x7f, 0x15, 0xc5, 0x90, 0xec, 0x3a, 0xd0,
-	0x3a, 0x3b, 0x1f, 0x5e, 0xbf, 0x65, 0xa3, 0xc2, 0x86, 0xe6, 0x72, 0x72, 0x71, 0xc5, 0xc6, 0x84,
-	0x7d, 0xbd, 0x1f, 0xe0, 0x49, 0xaf, 0xce, 0xd5, 0xe7, 0x18, 0x5f, 0xe1, 0x5e, 0x83, 0x7f, 0x4e,
-	0x07, 0x93, 0xcb, 0x51, 0xaf, 0x79, 0xfa, 0x6f, 0x0b, 0xda, 0x2a, 0x6b, 0xf4, 0x01, 0x9e, 0xca,
-	0x7b, 0x2e, 0xd7, 0xe6, 0xe6, 0xb6, 0xa3, 0x6f, 0xb4, 0xc2, 0xec, 0xde, 0x05, 0xcf, 0xbe, 0xd2,
-	0x8d, 0x4a, 0x7b, 0xde, 0xae, 0xa1, 0x0b, 0x38, 0x18, 0x2d, 0x88, 0xfb, 0x89, 0x89, 0x43, 0xe2,
-	0x8a, 0x3d, 0xfc, 0x44, 0xb3, 0x57, 0x5d, 0xb9, 0xe5, 0xa5, 0x78, 0x35, 0xed, 0xda, 0x4f, 0x06,
-	0x1a, 0xc1, 0x83, 0x71, 0xe4, 0x78, 0x92, 0x20, 0xcb, 0x1c, 0x1d, 0x6d, 0xf7, 0x2c, 0x77, 0x74,
-	0xab, 0x99, 0x62, 0x62, 0x84, 0x93, 0x29, 0x7b, 0x18, 0xd4, 0xe8, 0xca, 0xc9, 0x15, 0xcf, 0x1e,
-	0x7a, 0xae, 0x9d, 0xd8, 0x1a, 0xee, 0xea, 0xf4, 0x86, 0x60, 0xce, 0x48, 0x2a, 0xd8, 0xa2, 0xbb,
-	0x33, 0xa8, 0xf6, 0x71, 0x0e, 0xdd, 0x32, 0x1b, 0xdd, 0xb6, 0xfc, 0x30, 0x57, 0xbb, 0x99, 0xc1,
-	0x51, 0x51, 0x21, 0xfd, 0xe5, 0xdb, 0x5d, 0xf1, 0x63, 0x3d, 0xd0, 0xed, 0x73, 0xcc, 0xe9, 0x7b,
-	0x38, 0x64, 0xf9, 0xed, 0xf2, 0x79, 0xef, 0xe9, 0x6a, 0xb6, 0xbf, 0x14, 0x8b, 0x6e, 0x37, 0xbb,
-	0xaf, 0x35, 0xa9, 0x7e, 0x93, 0xec, 0xda, 0xf0, 0x08, 0x1e, 0x7b, 0xa4, 0xef, 0xc7, 0x59, 0x48,
-	0x99, 0xa6, 0xaf, 0x7e, 0xc2, 0xa6, 0xc6, 0x7c, 0x4f, 0xfc, 0x87, 0xbd, 0xfc, 0x12, 0x00, 0x00,
-	0xff, 0xff, 0x06, 0x6a, 0xf5, 0x22, 0x98, 0x09, 0x00, 0x00,
+var fileDescriptor1 = []byte{
+	// 486 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x54, 0x4d, 0x6f, 0x9b, 0x40,
+	0x10, 0x0d, 0x1f, 0xb6, 0xc9, 0xc4, 0x6e, 0xd0, 0xa6, 0x6d, 0xa8, 0xd5, 0x43, 0xc5, 0xa9, 0xea,
+	0x01, 0xb5, 0xe9, 0xa5, 0xb7, 0x2a, 0x26, 0x4e, 0x64, 0x89, 0x3a, 0xd6, 0xa2, 0xaa, 0xd7, 0x62,
+	0x98, 0x62, 0x14, 0xcc, 0xba, 0xcb, 0xda, 0x56, 0xfe, 0x4f, 0xff, 0x61, 0xff, 0x40, 0xcd, 0x02,
+	0x11, 0x76, 0x64, 0x7a, 0xdb, 0xb7, 0x8f, 0x99, 0xf7, 0xde, 0xee, 0xb0, 0x30, 0x48, 0x93, 0x78,
+	0x21, 0x90, 0x3b, 0x2b, 0xce, 0x04, 0x23, 0x67, 0x5e, 0x09, 0xef, 0xe8, 0xcc, 0x1d, 0x0e, 0x62,
+	0xcc, 0x90, 0x07, 0x69, 0xc9, 0xd9, 0x7f, 0x14, 0xe8, 0xbb, 0x2c, 0x65, 0xfc, 0x1b, 0xe6, 0x79,
+	0x10, 0x23, 0xb1, 0xa0, 0xc7, 0xb2, 0x5c, 0x04, 0x02, 0x2d, 0xe5, 0x9d, 0xf2, 0xde, 0xa0, 0x35,
+	0x24, 0x7d, 0x50, 0xb8, 0xa5, 0xee, 0xf6, 0x3a, 0x54, 0xe1, 0x05, 0x8a, 0x2d, 0xad, 0x44, 0x71,
+	0x81, 0xe6, 0x96, 0x5e, 0xa2, 0xb9, 0xec, 0xb1, 0x0a, 0xc2, 0x44, 0x3c, 0x5a, 0x1d, 0xb9, 0x57,
+	0x43, 0x32, 0x04, 0x23, 0xc2, 0x4d, 0x12, 0xe2, 0xe4, 0xc6, 0xea, 0xee, 0xa8, 0x53, 0xfa, 0x84,
+	0x0b, 0x6e, 0x15, 0xe4, 0xf9, 0x96, 0xf1, 0xc8, 0xea, 0x95, 0x5c, 0x8d, 0xed, 0x9f, 0xd0, 0xf7,
+	0x0b, 0x13, 0xff, 0x77, 0xd9, 0x54, 0x50, 0x5b, 0x14, 0xb4, 0x03, 0x85, 0x2d, 0x9c, 0xfb, 0xe1,
+	0x02, 0xa3, 0x75, 0x8a, 0x91, 0xbf, 0x4d, 0x44, 0xb8, 0x20, 0x04, 0x74, 0x91, 0x2c, 0x4b, 0x05,
+	0x8d, 0xca, 0x75, 0x53, 0x58, 0x3d, 0x2e, 0xac, 0xb5, 0x08, 0xeb, 0x07, 0xc2, 0x5f, 0xc0, 0xf0,
+	0x58, 0x3c, 0xce, 0x04, 0x7f, 0x3c, 0xa6, 0xb8, 0x2c, 0x53, 0x57, 0x79, 0x6a, 0x68, 0xe7, 0x00,
+	0xbb, 0x4a, 0x8a, 0xbf, 0xd7, 0x98, 0x0b, 0xf2, 0x09, 0x8c, 0x94, 0xc5, 0x1e, 0x6e, 0x30, 0x95,
+	0xf5, 0x2f, 0xae, 0x5e, 0x39, 0x8d, 0x8b, 0x77, 0xbc, 0x8a, 0xa4, 0x4f, 0x9f, 0x91, 0xd7, 0xd0,
+	0x0d, 0x96, 0x6c, 0x9d, 0x89, 0xea, 0x5a, 0x2b, 0xd4, 0x76, 0x4e, 0x1f, 0xbe, 0x4a, 0xbb, 0x65,
+	0xfd, 0x29, 0x74, 0x6e, 0xc6, 0xa3, 0xef, 0x77, 0xe6, 0x09, 0x31, 0x40, 0x9f, 0x4c, 0x6f, 0xef,
+	0x4d, 0xa5, 0x58, 0xfd, 0xb8, 0xa6, 0x53, 0x53, 0x2d, 0xe8, 0x31, 0xa5, 0xf7, 0xd4, 0xd4, 0x8a,
+	0xe5, 0xec, 0x7a, 0x3a, 0x71, 0x4d, 0xfd, 0xea, 0xaf, 0x0a, 0xbd, 0xca, 0x17, 0xb9, 0x85, 0x73,
+	0x77, 0x81, 0xe1, 0x83, 0xcb, 0xb2, 0x0c, 0x43, 0x91, 0xb0, 0x8c, 0xbc, 0xdc, 0x33, 0x5d, 0x85,
+	0x1b, 0xbe, 0xd9, 0xdb, 0x6d, 0x0e, 0xac, 0x7d, 0xf2, 0x51, 0x21, 0x2e, 0x0c, 0x3c, 0x16, 0x44,
+	0x3e, 0xf2, 0x0d, 0xf2, 0x9d, 0x3d, 0x72, 0x79, 0x18, 0xbd, 0x6e, 0xf4, 0xec, 0x4c, 0xe4, 0xc1,
+	0xcb, 0x26, 0x33, 0xb8, 0xa8, 0x27, 0xa0, 0x1c, 0x00, 0x39, 0x71, 0xe4, 0xed, 0x5e, 0xc5, 0xc1,
+	0x8c, 0x3c, 0x33, 0x96, 0xfd, 0x4a, 0xf8, 0x32, 0x28, 0x92, 0xd8, 0x27, 0x64, 0x04, 0x86, 0x8f,
+	0x42, 0xba, 0x25, 0xc7, 0x13, 0xb4, 0xf7, 0x18, 0xc3, 0x59, 0xd3, 0xcd, 0xfe, 0xb7, 0xcd, 0x7f,
+	0xa2, 0xb5, 0xcd, 0xe8, 0x12, 0x2e, 0x22, 0x74, 0x62, 0xbe, 0xce, 0x92, 0xf0, 0x01, 0x9d, 0xea,
+	0x81, 0x98, 0x29, 0xf3, 0xae, 0x7c, 0x07, 0x3e, 0xff, 0x0b, 0x00, 0x00, 0xff, 0xff, 0xc9, 0x13,
+	0x1a, 0x50, 0x34, 0x04, 0x00, 0x00,
 }

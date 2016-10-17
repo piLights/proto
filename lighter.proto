@@ -3,21 +3,16 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "de.grunicke.lighter";
 
+import "general.proto";
+
 package LighterGRPC;
 
 service Lighter {
-    rpc ChangeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
     rpc CheckConnection(Request) returns (stream ColorMessage) {};
     rpc LoadServerLog(LogRequest) returns (stream LogEntry) {};
     rpc ScheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc SetColor(ColorMessage) returns (Confirmation) {};
     rpc SwitchState(StateMessage) returns (Confirmation) {};
-
-    //Get and set the Configuration of the backend
-    rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {};
-    rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {};
-
-    rpc Version(Request) returns (BackendVersion) {};
 }
 
 message ColorMessage {
@@ -35,57 +30,6 @@ message StateMessage {
     bool onstate = 1;
     string deviceID = 2;
     string password = 3;
-}
-
-message Confirmation {
-    bool success = 1;
-}
-
-message Request {
-    string deviceID = 1;
-    string password = 2;
-}
-
-message ServerConfiguration {
-    string bindTo = 1;
-    Pins pins = 2;
-    bool debug = 3;
-    string updateURL = 4;
-    string configurationFile = 5;
-    string password = 6;
-    string piBlaster = 7;
-    string serverName = 8;
-    IPVersion ipVersion = 9;
-}
-
-message ChangeParameterMessage {
-    string password = 1;
-    oneof parameter {
-        string serverName = 2;
-        FadeTime fadeTime = 3;
-        IPVersion ipVersion = 4;
-        Pins pins = 5;
-    }
-}
-
-message FadeTime {
-    int32 milliseconds = 1;
-}
-
-message IPVersion {
-    enum Version {
-        DUAL = 0;
-        IPV4ONLY = 1;
-        IPV6ONLY = 2;
-    }
-    Version version = 1;
-}
-
-message Pins {
-    int32 redPin = 1;
-    int32 greenPin = 2;
-    int32 bluePin = 3;
-    int32 whitePin = 4;
 }
 
 message ScheduledSwitch {
@@ -112,9 +56,4 @@ message LogRequest {
     LogLevel logLevel = 1;
     int32 amount = 2;
     string password = 3;
-}
-
-message BackendVersion {
-    string VersionCode = 1;
-    bool UpdateAvailable = 2;
 }

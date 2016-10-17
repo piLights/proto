@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "general.proto";
+
+package LighterGRPC;
+
+service System {
+	rpc ChangeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
+
+	rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {};
+	rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {};
+
+	rpc Version(Empty) returns (BackendVersion) {};
+}
+
+message ServerConfiguration {
+    string bindTo = 1;
+    Pins pins = 2;
+    bool debug = 3;
+    string updateURL = 4;
+    string configurationFile = 5;
+    string password = 6;
+    string piBlaster = 7;
+    string serverName = 8;
+    IPVersion ipVersion = 9;
+}
+
+message ChangeParameterMessage {
+    string password = 1;
+    oneof parameter {
+        string serverName = 2;
+        FadeTime fadeTime = 3;
+        IPVersion ipVersion = 4;
+        Pins pins = 5;
+    }
+}
+
+message FadeTime {
+    int32 milliseconds = 1;
+}
+
+message IPVersion {
+    enum Version {
+        DUAL = 0;
+        IPV4ONLY = 1;
+        IPV6ONLY = 2;
+    }
+    Version version = 1;
+}
+
+message Pins {
+    int32 redPin = 1;
+    int32 greenPin = 2;
+    int32 bluePin = 3;
+    int32 whitePin = 4;
+}
+
+message BackendVersion {
+    string VersionCode = 1;
+    bool UpdateAvailable = 2;
+}

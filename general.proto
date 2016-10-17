@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package LighterGRPC;
+
+message Confirmation {
+    bool success = 1;
+}
+
+// Empty message for Requests without any params
+message Empty {}
+
+message Request {
+    string deviceID = 1;
+    string password = 2;
+}
