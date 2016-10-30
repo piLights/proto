@@ -4,6 +4,8 @@ option java_multiple_files = true;
 option java_package = "de.pilights.proto";
 
 import "general.proto";
+import "google/api/annotations.proto";
+
 
 package LighterGRPC;
 
@@ -12,7 +14,12 @@ service Lighter {
     rpc LoadServerLog(LogRequest) returns (stream LogEntry) {};
     rpc ScheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
     rpc SetColor(ColorMessage) returns (Confirmation) {};
-    rpc SwitchState(StateMessage) returns (Confirmation) {};
+    rpc SwitchState(StateMessage) returns (Confirmation) {
+        option (google.api.http) = {
+            post: "/v1/echo"
+            body: "*"
+        };
+    };
 }
 
 message ColorMessage {
