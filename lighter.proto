@@ -10,13 +10,31 @@ import "google/api/annotations.proto";
 package LighterGRPC;
 
 service Lighter {
-    rpc CheckConnection(Request) returns (stream ColorMessage) {};
-    rpc LoadServerLog(LogRequest) returns (stream LogEntry) {};
-    rpc ScheduleSwitchState(ScheduledSwitch) returns (Confirmation) {};
-    rpc SetColor(ColorMessage) returns (Confirmation) {};
+    rpc CheckConnection(Request) returns (stream ColorMessage) {
+        option (google.api.http).get = "/v1/lighter/checkConnection";
+    };
+
+    rpc LoadServerLog(LogRequest) returns (stream LogEntry) {
+        option (google.api.http).get = "/v1/lighter/loadServerLog";
+    };
+
+    rpc ScheduleSwitchState(ScheduledSwitch) returns (Confirmation) {
+        option (google.api.http) = {
+            post: "/v1/lighter/scheduleSwitchState"
+            body: "*"
+        };
+    };
+
+    rpc SetColor(ColorMessage) returns (Confirmation) {
+        option (google.api.http) = {
+            post: "/v1/lighter/setColor"
+            body: "*"
+        };
+    };
+
     rpc SwitchState(StateMessage) returns (Confirmation) {
         option (google.api.http) = {
-            post: "/v1/echo"
+            post: "/v1/lighter/switchState"
             body: "*"
         };
     };
