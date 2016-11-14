@@ -4,33 +4,17 @@ option java_multiple_files = true;
 option java_package = "de.pilights.proto";
 
 import "general.proto";
-import "google/api/annotations.proto";
-
 
 package LighterGRPC;
 
 service System {
-	rpc ChangeServerParameter(ChangeParameterMessage) returns (Confirmation) {
-		option (google.api.http) = {
-			post: "/v1/system/changeServerParameter"
-			body: "*"
-		};
-	};
+	rpc ChangeServerParameter(ChangeParameterMessage) returns (Confirmation) {};
 
-	rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {
-		option (google.api.http).get = "/v1/system/loadServerConfiguration";
-	};
+	rpc LoadServerConfiguration(Request) returns (ServerConfiguration) {};
 
-	rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {
-		option (google.api.http) = {
-			post: "/v1/system/setServerConfiguration"
-			body: "*"
-		};
-	};
+	rpc SetServerConfiguration(ServerConfiguration) returns (Confirmation) {};
 
-	rpc Version(Empty) returns (BackendVersion) {
-		option (google.api.http).get = "/v1/system/version";
-	};
+	rpc Version(Empty) returns (BackendVersion) {};
 }
 
 message ServerConfiguration {
