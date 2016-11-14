@@ -10,9 +10,12 @@ import "google/api/annotations.proto";
 package LighterGRPC;
 
 service Lighter {
-    rpc CheckConnection(Request) returns (stream ColorMessage) {
-        option (google.api.http).get = "/v1/lighter/checkConnection";
-    };
+
+    rpc GetStatus(Request) returns (ColorMessage) {
+        option (google.api.http).get = "/v1/lighter/getStatus";
+    }
+
+    rpc OpenStream(Request) returns (stream ColorMessage);
 
     rpc LoadServerLog(LogRequest) returns (stream LogEntry) {
         option (google.api.http).get = "/v1/lighter/loadServerLog";
