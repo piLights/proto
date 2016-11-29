@@ -9,6 +9,7 @@ package LighterGRPC;
 
 service Initializer {
     rpc LoadType (Empty) returns (ServiceTypeMessage) {};
+    // ...
 }
 
 message ServiceTypeMessage {
