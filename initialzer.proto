@@ -18,4 +18,5 @@ message ServiceTypeMessage {
 enum ServiceType {
     RGB = 0;
     RGBW = 1;
+    WS2801 = 2;
 }
