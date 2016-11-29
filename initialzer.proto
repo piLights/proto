@@ -13,7 +13,7 @@ service Initializer {
 }
 
 message ServiceTypeMessage {
-    Servicetype serviceType = 1;
+    ServiceType serviceType = 1;
 }
 
 enum ServiceType {
