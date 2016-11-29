@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "de.pilights.proto";
+
+import "general.proto";
+
+package LighterGRPC;
+
+service Initializer {
+    rpc LoadType (Empty) returns (ServiceTypeMessage) {};
+}
+
+message ServiceTypeMessage {
+    Servicetype serviceType = 1;
+}
+
+enum ServiceType {
+    RGB = 0;
+    RGBW = 1;
+}
