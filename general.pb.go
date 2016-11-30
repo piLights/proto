@@ -7,6 +7,7 @@ Package LighterGRPC is a generated protocol buffer package.
 
 It is generated from these files:
 	general.proto
+	initialzer.proto
 	lighter.proto
 	system.proto
 
@@ -14,6 +15,7 @@ It has these top-level messages:
 	Confirmation
 	Empty
 	Request
+	ServiceTypeMessage
 	ColorMessage
 	StateMessage
 	ScheduledSwitch
@@ -52,6 +54,13 @@ func (m *Confirmation) String() string            { return proto.CompactTextStri
 func (*Confirmation) ProtoMessage()               {}
 func (*Confirmation) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
+func (m *Confirmation) GetSuccess() bool {
+	if m != nil {
+		return m.Success
+	}
+	return false
+}
+
 // Empty message for Requests without any params
 type Empty struct {
 }
@@ -70,6 +79,20 @@ func (m *Request) Reset()                    { *m = Request{} }
 func (m *Request) String() string            { return proto.CompactTextString(m) }
 func (*Request) ProtoMessage()               {}
 func (*Request) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *Request) GetDeviceID() string {
+	if m != nil {
+		return m.DeviceID
+	}
+	return ""
+}
+
+func (m *Request) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
 
 func init() {
 	proto.RegisterType((*Confirmation)(nil), "LighterGRPC.Confirmation")
