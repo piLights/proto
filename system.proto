@@ -23,14 +23,12 @@ message ServerConfiguration {
     bool debug = 3;
     string updateURL = 4;
     string configurationFile = 5;
-    string password = 6;
     string piBlaster = 7;
     string serverName = 8;
     IPVersion ipVersion = 9;
 }
 
 message ChangeParameterMessage {
-    string password = 1;
     oneof parameter {
         string serverName = 2;
         FadeTime fadeTime = 3;

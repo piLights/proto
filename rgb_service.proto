@@ -28,22 +28,16 @@ message ColorMessage {
     int32 g = 3;
     int32 b = 4;
     int32 opacity = 5;
-    string deviceID = 6;
-//    string password = 7;
 }
 
 
 message StateMessage {
     bool onstate = 1;
-    string deviceID = 2;
-//    string password = 3;
 }
 
 message ScheduledSwitch {
     int64 time = 1;
     bool onstate = 2;
-    string deviceID = 3;
-//    string password = 4;
 }
 
 message LogEntry {
@@ -62,5 +56,4 @@ enum LogLevel {
 message LogRequest {
     LogLevel logLevel = 1;
     int32 amount = 2;
-//    string password = 3;
 }
