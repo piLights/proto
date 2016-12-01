@@ -5,7 +5,7 @@ option java_package = "de.pilights.proto";
 
 import "general.proto";
 
-package RgbServiceGRPC;
+package LighterGRPC;
 
 service RgbService {
 
